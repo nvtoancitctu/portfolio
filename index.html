@@ -1,541 +1,632 @@
 <!doctype html>
-<html lang="vi" class="scroll-smooth">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Evan Nguyen | Portfolio</title>
-        <link rel="icon" href="assets/icon.jpg" type="image/jpg" />
 
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="main.css" />
-        <script>
+<html class="dark" lang="vi">
+    <head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>[toan] - Portfolio</title>
+        <link rel="icon" href="./assets/icon.png" type="image/png" />
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+        <style>
+            .material-symbols-outlined {
+                font-variation-settings:
+                    "FILL" 0,
+                    "wght" 400,
+                    "GRAD" 0,
+                    "opsz" 24;
+            }
+            .glass-card {
+                background: rgba(31, 31, 33, 0.4);
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(228, 226, 228, 0.1);
+            }
+            .neon-border-blue {
+                box-shadow: 0 0 15px rgba(190, 198, 224, 0.1);
+            }
+            body {
+                background-color: #131315;
+                color: #e4e2e4;
+            }
+            .nav-link {
+                position: relative;
+                display: inline-block;
+                transition: color 0.3s ease;
+            }
+
+            .nav-link::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: -4px; /* khoảng cách với text */
+                width: 100%;
+                height: 2px;
+                background-color: currentColor; /* lấy màu chữ */
+                transform: scaleX(0);
+                transform-origin: right;
+                transition: transform 0.3s ease;
+            }
+
+            .nav-link:hover {
+                color: var(--color-primary); /* hoặc text-primary nếu dùng Tailwind */
+            }
+
+            .nav-link:hover::after {
+                transform: scaleX(1);
+                transform-origin: left;
+            }
+        </style>
+        <script id="tailwind-config">
             tailwind.config = {
                 darkMode: "class",
                 theme: {
                     extend: {
                         colors: {
-                            primary: "#6366f1",
-                            secondary: "#818cf8",
-                            dark: "#0a0f1a", // Deeper dark for better contrast
+                            primary: "#bec6e0",
+                            "tertiary-fixed": "#f2dfd1",
+                            "surface-dim": "#131315",
+                            "on-error": "#690005",
+                            "tertiary-container": "#1f160e",
+                            "inverse-surface": "#e4e2e4",
+                            "surface-container-low": "#1b1b1d",
+                            background: "#131315",
+                            "secondary-fixed-dim": "#c6c6c7",
+                            "surface-container-highest": "#353436",
+                            outline: "#909097",
+                            "on-primary-fixed": "#131b2e",
+                            "surface-container": "#1f1f21",
+                            "primary-fixed-dim": "#bec6e0",
+                            "on-tertiary-fixed-variant": "#51443a",
+                            "inverse-primary": "#565e74",
+                            "secondary-fixed": "#e2e2e2",
+                            "on-tertiary-fixed": "#231a11",
+                            "on-background": "#e4e2e4",
+                            "surface-container-lowest": "#0e0e10",
+                            "outline-variant": "#45464d",
+                            "on-surface-variant": "#c6c6cd",
+                            error: "#ffb4ab",
+                            "on-primary": "#283044",
+                            surface: "#131315",
+                            "inverse-on-surface": "#303032",
+                            "on-error-container": "#ffdad6",
+                            "primary-fixed": "#dae2fd",
+                            "on-secondary": "#2f3131",
+                            "primary-container": "#0f172a",
+                            "secondary-container": "#454747",
+                            "on-primary-container": "#798098",
+                            "tertiary-fixed-dim": "#d5c3b6",
+                            "on-tertiary": "#392e25",
+                            "surface-variant": "#353436",
+                            "surface-container-high": "#2a2a2b",
+                            "on-tertiary-container": "#8d7e72",
+                            "on-secondary-fixed-variant": "#454747",
+                            "on-primary-fixed-variant": "#3f465c",
+                            "surface-bright": "#39393b",
+                            "on-surface": "#e4e2e4",
+                            tertiary: "#d5c3b6",
+                            "surface-tint": "#bec6e0",
+                            secondary: "#c6c6c7",
+                            "on-secondary-fixed": "#1a1c1c",
+                            "on-secondary-container": "#b4b5b5",
+                            "error-container": "#93000a",
+                        },
+                        borderRadius: {
+                            DEFAULT: "0.25rem",
+                            lg: "0.5rem",
+                            xl: "0.75rem",
+                            full: "9999px",
+                        },
+                        spacing: {
+                            "margin-page": "64px",
+                            unit: "8px",
+                            "container-max": "1280px",
+                            gutter: "24px",
+                            "section-gap": "60px",
                         },
                         fontFamily: {
-                            sans: ["Inter", "sans-serif"],
-                            heading: ["Plus Jakarta Sans", "sans-serif"],
+                            "body-lg": ["Inter"],
+                            "label-caps": ["Space Grotesk"],
+                            "display-lg": ["Space Grotesk"],
+                            "body-md": ["Inter"],
+                            "headline-xl": ["Space Grotesk"],
+                            "headline-md": ["Space Grotesk"],
+                        },
+                        fontSize: {
+                            "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+                            "label-caps": ["12px", { lineHeight: "1", letterSpacing: "0.1em", fontWeight: "700" }],
+                            "display-lg": ["68px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "700" }],
+                            "body-md": ["16px", { lineHeight: "1.5", fontWeight: "400" }],
+                            "headline-xl": ["48px", { lineHeight: "1.2", fontWeight: "600" }],
+                            "headline-md": ["32px", { lineHeight: "1.3", fontWeight: "600" }],
                         },
                     },
                 },
             };
         </script>
     </head>
-    <body class="bg-dark text-slate-400 font-sans selection:bg-primary/30 selection:text-white antialiased">
-        <!-- Header -->
-        <header class="fixed w-full top-0 z-50 transition-all duration-300 border-b border-white/5 bg-dark/80 backdrop-blur-md" id="header">
-            <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-                <!-- Logo -->
-                <div class="flex items-center gap-3">
-                    <img src="assets/icon.jpg" alt="Logo" class="w-10 h-10 rounded-full object-cover bg-white" />
-                    <span class="text-white font-bold tracking-tight text-lg hidden sm:block">Evan Nguyen</span>
+
+    <body class="font-body-md text-on-surface selection:bg-primary selection:text-on-primary">
+        <!-- TopNavBar -->
+        <nav class="fixed top-0 w-full z-50 bg-surface/60 backdrop-blur-xl border-b border-outline-variant/10">
+            <div class="max-w-[1280px] mx-auto flex justify-between items-center px-margin-page h-20">
+                <div class="font-headline-md text-headline-md font-bold text-on-surface tracking-tighter bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                    [toan]
                 </div>
-                <!-- Desktop Menu -->
-                <nav class="hidden md:flex items-center space-x-10 font-medium text-[13px] uppercase tracking-widest">
-                    <a href="#home" class="nav-link text-white transition-colors">Home</a>
-                    <a href="#about" class="nav-link hover:text-white transition-colors">About</a>
-                    <a href="#skills" class="nav-link hover:text-white transition-colors">Skills</a>
-                    <a href="#projects" class="nav-link hover:text-white transition-colors">Projects</a>
-                    <a href="graduation.html" class="nav-link hover:text-white transition-colors">Graduation</a>
-                    <a href="#contact" class="bg-white text-dark px-5 py-2.5 rounded-full hover:bg-primary hover:text-white transition-all transform active:scale-95">Let's Talk</a>
-                </nav>
-                <div class="flex items-center space-x-4">
-                    <button id="menu-btn" class="md:hidden text-3xl text-white">
-                        <i class="bx bx-menu"></i>
-                    </button>
+                <div class="hidden md:flex items-center gap-10 font-body-md text-body-md uppercase font-medium">
+                    <a class="nav-link tracking-wider text-on-surface-variant hover:text-primary transition-all duration-300" href="#about">About</a>
+                    <a class="nav-link tracking-wider text-on-surface-variant hover:text-primary transition-all duration-300" href="#skills">Skills</a>
+                    <a class="nav-link tracking-wider text-on-surface-variant hover:text-primary transition-all duration-300" href="#projects">Projects</a>
+                    <a class="nav-link tracking-wider text-on-surface-variant hover:text-primary transition-all duration-300" href="#contact">Contact</a>
+                    <a class="nav-link tracking-wider text-on-surface-variant hover:text-primary transition-all duration-300" href="./graduation.html">Graduation</a>
+                </div>
+                <div class="flex items-center gap-6">
+                    <span class="material-symbols-outlined text-primary text-2xl">terminal</span>
+                    <a href="./assets/CV-EN.pdf" class="bg-on-surface text-surface px-6 py-2 font-label-caps text-label-caps rounded-full hover:bg-primary transition-colors active:scale-95">Resume</a>
                 </div>
             </div>
+        </nav>
 
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden bg-dark/95 absolute w-full left-0 border-b border-white/5 px-6 py-6 flex flex-col space-y-4">
-                <a href="#home" class="mobile-link">Home</a>
-                <a href="#about" class="mobile-link">About</a>
-                <a href="#skills" class="mobile-link">Skills</a>
-                <a href="#projects" class="mobile-link">Projects</a>
-                <a href="graduation.html" class="mobile-link">Graduation</a>
-                <a href="#contact" class="mobile-link">Contact</a>
-            </div>
-        </header>
-
-        <!-- Hero Section -->
-        <section id="home" class="min-h-screen flex items-center pt-20">
-            <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
-                <div class="reveal-left">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-[11px] font-bold uppercase tracking-widest text-primary mb-8">
-                        <span class="relative flex h-2 w-2">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-                        </span>
-                        Open for new opportunities
-                    </div>
-                    <h1 class="text-7xl md:text-8xl font-extrabold text-white mb-6 leading-[0.9] tracking-tighter">
-                        Building
-                        <br />
-                        <span class="text-gradient">Digital Future.</span>
-                    </h1>
-                    <p class="text-slate-400 max-w-lg mb-10 text-xl leading-relaxed font-light">
-                        Full-stack Engineer specializing in
-                        <span class="text-white font-medium">Laravel Ecosystem</span>
-                        &
-                        <span class="text-white font-medium">Scalable Architectures</span>
-                        . Based in Vietnam.
+        <main class="max-w-[1280px] mx-auto px-margin-page">
+            <!-- Hero Section -->
+            <section class="pt-40 pb-20 grid lg:grid-cols-2 items-center gap-gutter min-h-screen" id="about">
+                <div class="order-2 lg:order-1">
+                    <p class="font-label-caps text-label-caps text-primary mb-4 tracking-widest">FRONTEND &amp; BACKEND DEVELOPER</p>
+                    <h1 class="font-display-lg text-display-lg mb-8 leading-none">Building Digital Future</h1>
+                    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-12">
+                        Chào mừng bạn đến với không gian sáng tạo của tôi. Tôi là Toàn, một lập trình viên chuyên nghiệp tập trung vào việc tạo ra các giải pháp kỹ thuật hiệu quả và trải nghiệm người
+                        dùng tinh tế.
                     </p>
-                    <div class="flex flex-wrap gap-5 items-center">
-                        <a href="https://github.com/nvtoancitctu" class="flex items-center gap-2 bg-white text-dark px-6 py-3 rounded-xl font-bold hover:bg-primary hover:text-white transition-all">
-                            <i class="bx bxl-github"></i>
-                            GitHub
+                    <div class="flex flex-wrap gap-6 items-center">
+                        <a class="flex items-center gap-2 text-on-surface hover:text-primary transition-colors group" href="https://github.com/nvtoancitctu/" target="_blank">
+                            <span class="material-symbols-outlined">code</span>
+                            <span class="font-label-caps text-label-caps">GitHub</span>
                         </a>
-                        <div class="flex gap-4 text-2xl border-l border-white/10 pl-6 ml-2">
-                            <a href="https://linkedin.com/in/toan-nguyen-799a2034a" target="_blank" class="hover:text-primary transition-all hover:-translate-y-1"><i class="bx bxl-linkedin"></i></a>
-                            <a href="https://www.facebook.com/nvtoancitctu" target="_blank" class="hover:text-primary transition-all hover:-translate-y-1"><i class="bx bxl-facebook"></i></a>
-                            <a href="https://www.instagram.com/ngvt.1706/" target="_blank" class="hover:text-primary transition-all hover:-translate-y-1"><i class="bx bxl-instagram"></i></a>
-                            <a href="/assets/CV-VN.pdf" target="_blank" class="hover:text-primary transition-all hover:-translate-y-1 flex items-center gap-1" title="CV Tiếng Việt">
-                                <img src="https://flagcdn.com/w20/vn.png" alt="Vietnamese" class="w-5 h-4 rounded-sm" />
-                            </a>
-                            <a href="/assets/CV-EN.pdf" target="_blank" class="hover:text-primary transition-all hover:-translate-y-1 flex items-center gap-1" title="CV English">
-                                <img src="https://flagcdn.com/w20/gb.png" alt="English" class="w-5 h-4 rounded-sm" />
-                            </a>
-                        </div>
+                        <a class="flex items-center gap-2 text-on-surface hover:text-primary transition-colors group" href="https://www.linkedin.com/in/toan-nguyen-799a2034a/" target="_blank">
+                            <span class="material-symbols-outlined">link</span>
+                            <span class="font-label-caps text-label-caps">LinkedIn</span>
+                        </a>
+                        <a class="flex items-center gap-2 text-on-surface hover:text-primary transition-colors group" href="https://m.me/nvtoancitctu" target="_blank">
+                            <span class="material-symbols-outlined">message</span>
+                            <span class="font-label-caps text-label-caps">Messenger</span>
+                        </a>
                     </div>
                 </div>
-                <div class="relative reveal-right flex justify-center lg:justify-end">
-                    <div class="relative group">
-                        <div class="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-[2rem] blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-                        <div class="relative w-80 h-80 md:w-[450px] md:h-[550px] overflow-hidden rounded-[2rem] border border-white/10 glass">
-                            <img src="assets/image/home1.png" alt="Profile" class="w-full h-full object-cover" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Refined About/Stats -->
-        <section id="about" class="py-32 relative">
-            <div class="container mx-auto px-6">
-                <div class="grid lg:grid-cols-12 gap-16 items-center">
-                    <div class="lg:col-span-7 space-y-8 reveal-left">
-                        <h2 class="text-5xl font-bold text-white tracking-tighter">
-                            I combine code with
-                            <br />
-                            <span class="text-primary">Engineering Logic.</span>
-                        </h2>
-                        <p class="text-lg text-slate-400 leading-relaxed max-w-2xl">
-                            With a 3.54 GPA in Computer Science, I don't just build websites; I engineer robust backends. My focus is on PHP/Laravel performance, REST API optimization, and clean
-                            architectural patterns.
-                        </p>
-                        <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-                            <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
-                                <div class="text-3xl font-bold text-white mb-1">3.54</div>
-                                <div class="text-[10px] uppercase tracking-widest font-bold text-slate-500">Academic GPA</div>
-                            </div>
-                            <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
-                                <div class="text-3xl font-bold text-white mb-1">10+</div>
-                                <div class="text-[10px] uppercase tracking-widest font-bold text-slate-500">Live Projects</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-6 reveal-right">
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-primary/10 p-3 rounded-lg text-primary text-xl"><i class="bx bx-envelope"></i></div>
-                            <div>
-                                <h4 class="text-white font-medium">Email</h4>
-                                <p class="text-sm">nvtoan.1706@gmail.com</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-primary/10 p-3 rounded-lg text-primary text-xl"><i class="bx bx-phone"></i></div>
-                            <div>
-                                <h4 class="text-white font-medium">Điện thoại</h4>
-                                <a href="tel:0932822075" class="text-sm hover:text-primary">0932 822 075</a>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-primary/10 p-3 rounded-lg text-primary text-xl"><i class="bx bx-map"></i></div>
-                            <div>
-                                <h4 class="text-white font-medium">Vị trí</h4>
-                                <p class="text-sm">Cần Thơ, Việt Nam</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-primary/10 p-3 rounded-lg text-primary text-xl"><i class="bx bx-book"></i></div>
-                            <div>
-                                <h4 class="text-white font-medium">Học vấn</h4>
-                                <a
-                                    href="https://www.google.com/maps/place/%C4%90%E1%BA%A1i+h%E1%BB%8Dc+C%E1%BA%A7n+Th%C6%A1/@10.029939,105.7680404,17z/data=!3m1!4b1!4m6!3m5!1s0x31a0895a51d60719:0x9d76b0035f6d53d0!8m2!3d10.0299337!4d105.7706153!16s%2Fm%2F02r6wmy!5m2!1e4!1e1?entry=ttu&g_ep=EgoyMDI2MDQwOC4wIKXMDSoASAFQAw%3D%3D"
-                                    target="_blank"
-                                    class="text-sm hover:text-primary hover:underline"
-                                >
-                                    Đại Học Cần Thơ
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Messenger -->
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-primary/10 p-3 rounded-lg text-primary text-xl">
-                                <i class="bx bxl-messenger"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-medium">Messenger</h4>
-                                <a href="https://m.me/nvtoancitctu" target="_blank" class="text-sm hover:text-primary">Nhắn tin</a>
-                            </div>
-                        </div>
-
-                        <!-- Zalo -->
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-primary/10 p-3 rounded-lg text-primary text-xl">
-                                <i class="bx bxl-telegram"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-medium">Zalo</h4>
-                                <a href="https://zalo.me/0932822075" target="_blank" class="text-sm hover:text-primary">Nhắn tin</a>
+                <div class="order-1 lg:order-2 flex justify-center relative">
+                    <div class="absolute -z-10 w-72 h-72 bg-primary/10 blur-[100px] rounded-full"></div>
+                    <div class="glass-card p-4 rounded-3xl overflow-hidden neon-border-blue max-w-md w-full aspect-[4/5] relative">
+                        <img class="w-full h-full object-cover rounded-2xl grayscale hover:grayscale-0 transition-all duration-700" src="./assets/chandung.jpg" alt="avatar" />
+                        <div class="absolute bottom-8 left-8 right-8 p-6 glass-card rounded-2xl">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <p class="text-label-caps font-bold">NGUYEN VAN TOAN</p>
+                                    <p class="mt-1 text-xs text-on-surface-variant opacity-70">TECH STACK: LARAVEL / REACT</p>
+                                </div>
+                                <span class="material-symbols-outlined text-primary" data-weight="fill">verified</span>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Skills Section -->
-        <section id="skills">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16 reveal-top">
-                    <h2 class="text-4xl font-bold text-white mb-4">
-                        Kỹ năng
-                        <span class="text-primary">Chuyên môn</span>
-                    </h2>
-                    <div class="w-20 h-1.5 bg-primary mx-auto rounded-full"></div>
+            <!-- Logic Section (Stats & Info) -->
+            <section class="py-section-gap grid lg:grid-cols-3 gap-gutter">
+                <div class="lg:col-span-2 glass-card p-12 rounded-3xl flex flex-col justify-center">
+                    <div class="grid md:grid-cols-3 gap-8 items-center">
+                        <!-- LEFT: IMAGE (1/3) -->
+                        <div class="md:col-span-1">
+                            <img src="./assets/image/about1.png" alt="Creative" class="w-full h-full object-cover rounded-2xl shadow-lg" />
+                        </div>
+
+                        <!-- RIGHT: TEXT (2/3) -->
+                        <div class="md:col-span-2">
+                            <h2 class="font-headline-xl text-3xl mb-6 leading-tight">
+                                I combine code with
+                                <span class="text-primary italic">creativity & innovation</span>
+                                to deliver
+                                <span class="text-primary italic">innovative solutions</span>
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-8 border-t border-outline-variant/20 pt-12">
+                        <div>
+                            <p class="text-4xl font-display-lg text-primary">3.54</p>
+                            <p class="text-label-caps text-on-surface-variant mt-2 uppercase">GPA Score</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl font-display-lg text-tertiary">12+</p>
+                            <p class="text-label-caps text-on-surface-variant mt-2 uppercase">Completed Projects</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl font-display-lg text-on-surface">2+</p>
+                            <p class="text-label-caps text-on-surface-variant mt-2 uppercase">Years Experience</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl font-display-lg text-secondary">85%</p>
+                            <p class="text-label-caps text-on-surface-variant mt-2 uppercase">Core Logic</p>
+                        </div>
+                    </div>
                 </div>
+                <div class="space-y-gutter">
+                    <div class="glass-card p-8 rounded-3xl h-full flex flex-col justify-between">
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4">
+                                <span class="material-symbols-outlined bg-surface-container p-3 rounded-xl text-primary">mail</span>
+                                <div>
+                                    <p class="text-xs text-on-surface-variant font-bold uppercase">Email</p>
+                                    <a href="mailto:nvtoan.1706@gmail.com" class="text-body-md hover:text-primary transition-colors">nvtoan.1706@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="material-symbols-outlined bg-surface-container p-3 rounded-xl text-primary">phone_iphone</span>
+                                <div>
+                                    <p class="text-xs text-on-surface-variant font-bold uppercase">Phone</p>
+                                    <a href="tel:+84932822075" class="text-body-md hover:text-primary transition-colors">(+84) 932 822 075</a>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="material-symbols-outlined bg-surface-container p-3 rounded-xl text-primary">location_on</span>
+                                <div>
+                                    <p class="text-xs text-on-surface-variant font-bold uppercase">Location</p>
+                                    <p class="text-body-md">Can Tho, Viet Nam</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="material-symbols-outlined bg-surface-container p-3 rounded-xl text-primary">language</span>
+                                <div>
+                                    <p class="text-xs text-on-surface-variant font-bold uppercase">Languages</p>
+                                    <p class="text-body-md">Vietnamese, English, Chinese</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="w-full bg-primary-container text-primary border border-primary/20 py-4 mt-8 rounded-xl font-label-caps hover:bg-primary hover:text-on-primary transition-all">
+                            <a href="https://zalo.me/0932822075" target="_blank" class="block text-center">Zalo Contact</a>
+                        </button>
+                    </div>
+                </div>
+            </section>
 
-                <div class="grid md:grid-cols-3 gap-8">
+            <!-- Skills Section -->
+            <section class="py-section-gap" id="skills">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                    <h2 class="font-headline-xl text-headline-xl">Kỹ Năng Lập Trình</h2>
+                    <p class="font-body-md text-on-surface-variant max-w-sm">Liên tục cập nhật những công nghệ mới nhất để mang lại hiệu quả cao nhất cho dự án.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-gutter">
                     <!-- Frontend -->
-                    <div class="glass p-8 rounded-2xl border border-white/5 hover:border-primary/50 transition-all reveal-bottom">
-                        <div class="text-4xl text-primary mb-6"><i class="bx bx-code-alt"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-4">Frontend Development</h3>
-                        <ul class="space-y-3">
-                            <li class="flex items-center space-x-2 text-sm">
-                                <i class="bx bx-check-circle text-primary"></i>
-                                <span>HTML5 / CSS3 / Modern JS</span>
+                    <div class="glass-card p-10 rounded-3xl border-t-2 border-primary/40 hover:scale-[1.02] transition-transform duration-300">
+                        <span class="material-symbols-outlined text-4xl text-primary mb-8" data-weight="fill">web</span>
+                        <h3 class="font-headline-md text-headline-md mb-6">Frontend</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                HTML5 / CSS3 / SCSS
                             </li>
-                            <li class="flex items-center space-x-2 text-sm">
-                                <i class="bx bx-check-circle text-primary"></i>
-                                <span>Tailwind CSS Expert</span>
+                            <li class="flex items-center gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                JavaScript (ES6+) / TypeScript
                             </li>
-                            <li class="flex items-center space-x-2 text-sm">
-                                <i class="bx bx-check-circle text-primary"></i>
-                                <span>React Basic & Responsive Design</span>
+                            <li class="flex items-center gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                React.js / Vite / Next.js
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                Tailwind CSS / Bootstrap 5
                             </li>
                         </ul>
                     </div>
                     <!-- Backend -->
-                    <div class="glass p-8 rounded-2xl border border-white/5 hover:border-primary/50 transition-all reveal-bottom" style="transition-delay: 100ms">
-                        <div class="text-4xl text-primary mb-6"><i class="bx bx-server"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-4">Backend Development</h3>
-                        <ul class="space-y-3">
-                            <li class="flex items-center space-x-2 text-sm">
-                                <i class="bx bx-check-circle text-primary"></i>
-                                <span>PHP & Laravel (Mastering)</span>
+                    <div class="glass-card p-10 rounded-3xl border-t-2 border-secondary/40 hover:scale-[1.02] transition-transform duration-300">
+                        <span class="material-symbols-outlined text-4xl text-secondary mb-8" data-weight="fill">database</span>
+                        <h3 class="font-headline-md text-headline-md mb-6">Backend</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                PHP / Laravel Framework
                             </li>
-                            <li class="flex items-center space-x-2 text-sm">
-                                <i class="bx bx-check-circle text-primary"></i>
-                                <span>MySQL / PostgreSQL</span>
+                            <li class="flex items-center gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                MySQL / PostgreSQL
                             </li>
-                            <li class="flex items-center space-x-2 text-sm">
-                                <i class="bx bx-check-circle text-primary"></i>
-                                <span>RESTful API Design</span>
+                            <li class="flex items-center gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                RESTful API / GraphQL
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                Node.js / Express
                             </li>
                         </ul>
                     </div>
                     <!-- Tools -->
-                    <div class="glass p-8 rounded-2xl border border-white/5 hover:border-primary/50 transition-all reveal-bottom" style="transition-delay: 200ms">
-                        <div class="text-4xl text-primary mb-6"><i class="bx bx-wrench"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-4">Tools & Others</h3>
-                        <ul class="space-y-3">
-                            <li class="flex items-center space-x-2 text-sm">
-                                <i class="bx bx-check-circle text-primary"></i>
-                                <span>Git / GitHub Workflow</span>
+                    <div class="glass-card p-10 rounded-3xl border-t-2 border-tertiary/40 hover:scale-[1.02] transition-transform duration-300">
+                        <span class="material-symbols-outlined text-4xl text-tertiary mb-8" data-weight="fill">construction</span>
+                        <h3 class="font-headline-md text-headline-md mb-6">Tools &amp; Others</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                                Git / GitHub / GitLab
                             </li>
-                            <li class="flex items-center space-x-2 text-sm">
-                                <i class="bx bx-check-circle text-primary"></i>
-                                <span>UI/UX Design with Figma</span>
+                            <li class="flex items-center gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                                Docker / CI/CD (Basic)
                             </li>
-                            <li class="flex items-center space-x-2 text-sm">
-                                <i class="bx bx-check-circle text-primary"></i>
-                                <span>Problem Solving & Logical Thinking</span>
+                            <li class="flex items-center gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                                Figma / Adobe XD
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                                Postman / Swagger
                             </li>
                         </ul>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Projects Section - Refined Cards -->
-        <section id="projects" class="bg-dark/50 py-20 border-y border-white/5">
-            <div class="container mx-auto px-6">
-                <div class="mb-16">
-                    <h2 class="text-4xl font-bold text-white mb-4">
-                        Selected
-                        <span class="text-primary">Works</span>
-                    </h2>
-                    <div class="w-12 h-1.5 bg-primary rounded-full"></div>
-                </div>
-
-                <div class="grid gap-20">
+            <!-- Selected Works (Bento Grid Style) -->
+            <section class="py-section-gap" id="projects">
+                <h2 class="font-headline-xl text-headline-xl mb-16">Dự Án Tiêu Biểu</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
                     <!-- Project 1 -->
-                    <div class="group grid lg:grid-cols-2 gap-12 items-center">
-                        <div class="order-2 lg:order-1">
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="text-[10px] bg-primary/10 text-primary px-2 py-1 rounded-md border border-primary/20 uppercase font-bold tracking-widest">Laravel</span>
-                                <span class="text-[10px] bg-red-500/10 text-red-400 px-2 py-1 rounded-md border border-red-500/20 uppercase font-bold tracking-widest">Graduation</span>
-                            </div>
-                            <h3 class="text-3xl font-bold text-white mb-4 group-hover:text-primary transition-colors">Website Bán Pizza</h3>
-                            <p class="text-slate-400 mb-8 text-lg leading-relaxed">System implementation focused on high-performance ordering workflows and admin inventory management.</p>
-
-                            <div class="flex items-center gap-6">
-                                <a
-                                    href="https://www.youtube.com/watch?v=rlhfgAV7LCo"
-                                    target="_blank"
-                                    class="flex items-center gap-2 bg-white text-dark px-6 py-3 rounded-xl font-bold hover:bg-primary hover:text-white transition-all"
-                                >
-                                    <i class="bx bxl-youtube"></i>
-                                    Demo
-                                </a>
-                                <a href="#" class="flex items-center gap-2 text-white hover:text-primary transition-colors font-medium">
-                                    <i class="bx bxl-github text-xl"></i>
-                                    Source Code
-                                </a>
-                            </div>
+                    <div class="glass-card rounded-3xl overflow-hidden group">
+                        <div class="h-80 overflow-hidden relative">
+                            <div class="absolute inset-0 bg-gradient-to-t from-background to-transparent z-10"></div>
+                            <img
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                data-alt="A high-quality image of a premium pizza ordering platform interface. The screen displays vibrant food photography, a sleek dark UI, and modern typography. The atmosphere is professional and commercial, emphasizing a seamless user experience for a digital food business. The lighting is warm and inviting against the dark background."
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaDBJ9cg3ne_0NmMRVCBVDzYRakELJewtLRNH7jCgkshoSQ4NZwKoldUtntod5x0jk4EM29FIyd8UglXZ_SNH3SHIXkbFcrI0UB3JNjMqFx8MtT_tyEzi56WxsQa9C1uKRFou6dGYbagnmBjdenjTYpumHYt9A8jyxdeeLzMOir8eEIqmeXGB-MuGg4KMRcDPlqCxpk5uoGXljw50HKraL0huxlM7gwT7wTzJw9jH2M38BCSOFyVGk727vxLpto_86m03UZR2ZFPGC"
+                            />
                         </div>
-                        <div class="order-1 lg:order-2 relative group-hover:scale-[1.02] transition-transform duration-500">
-                            <div class="absolute -inset-4 bg-gradient-to-r from-primary to-purple-500 opacity-20 blur-2xl group-hover:opacity-30 transition-opacity"></div>
-                            <iframe class="w-full aspect-video rounded-2xl relative glass" src="https://www.youtube.com/embed/rlhfgAV7LCo" frameborder="0" allowfullscreen></iframe>
+                        <div class="p-10 -mt-20 relative z-20">
+                            <div class="flex gap-3 mb-4">
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-xs font-bold uppercase">Laravel</span>
+                                <span class="bg-tertiary/20 text-tertiary px-3 py-1 rounded-full text-xs font-bold uppercase">Graduation</span>
+                            </div>
+                            <h3 class="font-headline-md text-headline-md mb-4">Website Bán Pizza</h3>
+                            <p class="text-on-surface-variant mb-8 max-w-lg">Hệ thống đặt hàng trực tuyến tích hợp thanh toán và quản lý đơn hàng thời gian thực cho chuỗi cửa hàng pizza.</p>
+                            <div class="flex gap-4">
+                                <a
+                                    href="https://www.youtube.com/watch?si=Tk111Qq5HOf9Tede&v=rlhfgAV7LCo&feature=youtu.be"
+                                    class="bg-on-surface text-surface px-6 py-3 font-label-caps rounded-xl hover:bg-primary transition-colors flex items-center gap-2"
+                                >
+                                    <span class="material-symbols-outlined text-sm">visibility</span>
+                                    Demo Video
+                                </a>
+                                <!-- <a
+                                    href="https://github.com/yourusername/pizza-ordering-system"
+                                    class="border border-outline-variant px-6 py-3 font-label-caps rounded-xl hover:bg-surface-container transition-colors flex items-center gap-2"
+                                >
+                                    <span class="material-symbols-outlined text-sm">code</span>
+                                    Source Code
+                                </a> -->
+                            </div>
                         </div>
                     </div>
-
                     <!-- Project 2 -->
-                    <div class="group grid lg:grid-cols-2 gap-12 items-center">
-                        <div class="order-2 lg:order-1">
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="text-[10px] bg-green-500/10 text-green-400 px-2 py-1 rounded-md border border-green-500/20 uppercase font-bold tracking-widest">PHP</span>
-                                <span class="text-[10px] bg-blue-500/10 text-blue-400 px-2 py-1 rounded-md border border-blue-500/20 uppercase font-bold tracking-widest">Internship</span>
-                            </div>
-                            <h3 class="text-3xl font-bold text-white mb-4 group-hover:text-primary transition-colors">Hệ Thống Thi Trực Tuyến</h3>
-                            <p class="text-slate-400 mb-8 text-lg leading-relaxed">
-                                Phát triển hệ thống thi trắc nghiệm trực tuyến phục vụ trường học và trung tâm đào tạo. Hỗ trợ tạo đề thi, ngân hàng câu hỏi, trộn đề, chấm điểm tự động và thống kê kết
-                                quả.
-                            </p>
-
-                            <div class="flex items-center gap-6">
-                                <a
-                                    href="https://www.youtube.com/watch?v=YwMWNS2VCVA"
-                                    target="_blank"
-                                    class="flex items-center gap-2 bg-white text-dark px-6 py-3 rounded-xl font-bold hover:bg-primary hover:text-white transition-all"
-                                >
-                                    <i class="bx bxl-youtube"></i>
-                                    Demo
-                                </a>
-                                <a href="#" class="flex items-center gap-2 text-white hover:text-primary transition-colors font-medium">
-                                    <i class="bx bxl-github text-xl"></i>
-                                    Source Code
-                                </a>
-                            </div>
+                    <div class="glass-card rounded-3xl overflow-hidden group flex flex-col">
+                        <div class="h-64 overflow-hidden relative">
+                            <div class="absolute inset-0 bg-gradient-to-t from-background to-transparent z-10"></div>
+                            <img
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                data-alt="A visualization of an online examination system with a futuristic dashboard. The interface shows charts, countdown timers, and question modules. The style is strictly technical, with a focus on data clarity and digital security. The color scheme features deep blues and sharp white accents, evoking a high-stakes educational environment."
+                                src="https://qig.vn/htmlib/img/Slide/Hocvathitructuyen.png"
+                            />
                         </div>
-                        <div class="order-1 lg:order-2 relative group-hover:scale-[1.02] transition-transform duration-500">
-                            <div class="absolute -inset-4 bg-gradient-to-r from-primary to-purple-500 opacity-20 blur-2xl group-hover:opacity-30 transition-opacity"></div>
-                            <iframe class="w-full aspect-video rounded-2xl relative glass" src="https://www.youtube.com/embed/YwMWNS2VCVA" frameborder="0" allowfullscreen></iframe>
+                        <div class="p-8 flex-1 flex flex-col">
+                            <div class="flex gap-3 mb-4">
+                                <span class="bg-secondary/20 text-secondary px-3 py-1 rounded-full text-xs font-bold uppercase">Laravel</span>
+                                <span class="bg-error/20 text-error px-3 py-1 rounded-full text-xs font-bold uppercase">Internship</span>
+                            </div>
+                            <h3 class="font-headline-md text-2xl mb-4">Hệ Thống Thi Trực Tuyến</h3>
+                            <p class="text-on-surface-variant mb-8 flex-1">
+                                Nền tảng thi trắc nghiệm bảo mật cao với khả năng xử lý hàng ngàn thí sinh cùng lúc. Tích hợp AI sinh đề tự động và chấm điểm thông minh.
+                            </p>
+                            <div class="flex gap-4">
+                                <a
+                                    href="https://www.youtube.com/watch?si=_bzQZuJFHd9kyDdC&v=YwMWNS2VCVA&feature=youtu.be"
+                                    class="bg-on-surface text-surface px-6 py-3 font-label-caps rounded-xl hover:bg-primary transition-colors flex items-center gap-2"
+                                >
+                                    <span class="material-symbols-outlined text-sm">visibility</span>
+                                    Demo Video
+                                </a>
+                            </div>
                         </div>
                     </div>
-
                     <!-- Project 3 -->
-                    <div class="group grid lg:grid-cols-2 gap-12 items-center">
-                        <div class="order-2 lg:order-1">
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="text-[10px] bg-yellow-500/10 text-yellow-400 px-2 py-1 rounded-md border border-yellow-500/20 uppercase font-bold tracking-widest">YDCC 2025</span>
-                                <span class="text-[10px] bg-purple-500/10 text-purple-400 px-2 py-1 rounded-md border border-purple-500/20 uppercase font-bold tracking-widest">Competition</span>
+                    <div class="lg:col-span-3 glass-card rounded-3xl overflow-hidden flex flex-col md:flex-row items-center">
+                        <div class="w-full md:w-1/2 p-10 md:p-16 order-2 md:order-1">
+                            <div class="flex gap-3 mb-6">
+                                <span class="bg-on-surface/10 text-on-surface px-3 py-1 rounded-full text-xs font-bold uppercase">Digital Transformation</span>
+                                <span class="bg-error/20 text-error px-3 py-1 rounded-full text-xs font-bold uppercase">Big Project</span>
                             </div>
-                            <h3 class="text-3xl font-bold text-white mb-4 group-hover:text-primary transition-colors">Nền Tảng Chuyển Đổi Số Làng Nghề</h3>
-                            <p class="text-slate-400 mb-8 text-lg leading-relaxed">
-                                Dự án tham gia cuộc thi YDCC 2025, xây dựng nền tảng hỗ trợ các làng nghề truyền thống chuyển đổi số, quảng bá du lịch và nâng cao sinh kế người dân.
+                            <h3 class="font-headline-xl text-3xl md:text-4xl mb-6">Nền Tảng Chuyển Đổi Số Làng Nghề</h3>
+                            <p class="text-on-surface-variant mb-10 text-body-lg">
+                                Dự án quy mô lớn nhằm số hóa quy trình sản xuất và kinh doanh cho các làng nghề truyền thống tại Đồng bằng Sông Cửu Long, kết nối di sản với thương mại điện tử hiện
+                                đại.
                             </p>
-
-                            <div class="flex items-center gap-6">
+                            <div class="flex gap-4">
                                 <a
-                                    href="https://www.youtube.com/watch?v=7tpo6gPO89I"
-                                    target="_blank"
-                                    class="flex items-center gap-2 bg-white text-dark px-6 py-3 rounded-xl font-bold hover:bg-primary hover:text-white transition-all"
+                                    href="https://www.youtube.com/watch?si=HNKVGAuhKvNspM02&v=7tpo6gPO89I&feature=youtu.be"
+                                    class="bg-on-surface text-surface px-6 py-3 font-label-caps rounded-xl hover:bg-primary transition-colors flex items-center gap-2"
                                 >
-                                    <i class="bx bxl-youtube"></i>
-                                    Demo
-                                </a>
-                                <a href="#" class="flex items-center gap-2 text-white hover:text-primary transition-colors font-medium">
-                                    <i class="bx bxl-github text-xl"></i>
-                                    Source Code
+                                    <span class="material-symbols-outlined text-sm">visibility</span>
+                                    Demo Video
                                 </a>
                             </div>
                         </div>
-                        <div class="order-1 lg:order-2 relative group-hover:scale-[1.02] transition-transform duration-500">
-                            <div class="absolute -inset-4 bg-gradient-to-r from-primary to-purple-500 opacity-20 blur-2xl group-hover:opacity-30 transition-opacity"></div>
-                            <iframe class="w-full aspect-video rounded-2xl relative glass" src="https://www.youtube.com/embed/7tpo6gPO89I" frameborder="0" allowfullscreen></iframe>
+                        <div class="w-full md:w-1/2 h-80 md:h-[500px] order-1 md:order-2">
+                            <img class="w-full h-full object-cover" src="https://vstatic.vietnam.vn/vietnam/resource/IMAGE/2025/1/20/95c128bcc82a484c934f460532f22d28" />
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Partners Section (GitHub Contributors Style) -->
-        <section id="partners">
-            <div class="container mx-auto px-6 text-center reveal-top">
-                <h3 class="text-slate-500 uppercase tracking-[0.2em] font-bold text-xs mb-10">Trusted Technology & Collaborations</h3>
-                <div class="flex flex-wrap justify-center items-center gap-12 opacity-50 grayscale hover:grayscale-0 transition-all">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Laravel.svg" alt="Laravel" class="h-10" />
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" alt="Tailwind" class="h-10" />
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg" alt="PHP" class="h-12" />
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React" class="h-10" />
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" class="h-10 invert" />
+            <!-- Collab Section -->
+            <section class="py-24 border-y border-outline-variant/10 my-section-gap">
+                <p class="text-center font-label-caps text-on-surface-variant mb-12 tracking-widest opacity-50">TRUSTED TECHNOLOGY &amp; COLLABORATIONS</p>
+                <div class="flex flex-wrap justify-center items-center gap-16 md:gap-24 opacity-70 grayscale hover:grayscale-0 transition-all">
+                    <!-- Laravel -->
+                    <div class="flex flex-col items-center gap-3 group cursor-pointer">
+                        <span class="text-2xl font-bold font-headline-md group-hover:text-primary transition">LARAVEL</span>
+                        <img src="./assets/image/laravel.png" alt="Laravel" class="w-10 h-10 object-contain opacity-80 group-hover:opacity-100 group-hover:scale-110 transition" />
+                    </div>
+                    <!-- React -->
+                    <div class="flex flex-col items-center gap-3 group cursor-pointer">
+                        <span class="text-2xl font-bold font-headline-md group-hover:text-primary transition">REACT</span>
+                        <img src="./assets/image/react.png" alt="React" class="w-10 h-10 object-contain opacity-80 group-hover:opacity-100 group-hover:scale-110 transition" />
+                    </div>
+                    <!-- GitHub -->
+                    <div class="flex flex-col items-center gap-3 group cursor-pointer">
+                        <span class="text-2xl font-bold font-headline-md group-hover:text-primary transition">GITHUB</span>
+                        <img src="./assets/image/github.png" alt="GitHub" class="w-10 h-10 object-contain opacity-80 group-hover:opacity-100 group-hover:scale-110 transition" />
+                    </div>
+                    <!-- PHP -->
+                    <div class="flex flex-col items-center gap-3 group cursor-pointer">
+                        <span class="text-2xl font-bold font-headline-md group-hover:text-primary transition">PHP</span>
+                        <img src="./assets/image/php.png" alt="PHP" class="w-10 h-10 object-contain opacity-80 group-hover:opacity-100 group-hover:scale-110 transition" />
+                    </div>
+                    <!-- Node -->
+                    <div class="flex flex-col items-center gap-3 group cursor-pointer">
+                        <span class="text-2xl font-bold font-headline-md group-hover:text-primary transition">NODE.JS</span>
+                        <img src="./assets/image/node.png" alt="NodeJS" class="w-10 h-10 object-contain opacity-80 group-hover:opacity-100 group-hover:scale-110 transition" />
+                    </div>
+                    <!-- MySQL -->
+                    <div class="flex flex-col items-center gap-3 group cursor-pointer">
+                        <span class="text-2xl font-bold font-headline-md group-hover:text-primary transition">MYSQL</span>
+                        <img src="./assets/image/mysql.png" alt="MySQL" class="w-10 h-10 object-contain opacity-80 group-hover:opacity-100 group-hover:scale-110 transition" />
+                    </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="relative overflow-hidden">
-            <div class="container mx-auto px-6">
-                <div class="max-w-4xl mx-auto glass rounded-3xl p-8 md:p-12 border border-white/10 shadow-2xl reveal-bottom">
-                    <div class="grid md:grid-cols-2 gap-12">
-                        <div>
-                            <h2 class="text-3xl font-bold text-white mb-6">
-                                Bắt đầu một
-                                <span class="text-primary">Dự án?</span>
-                            </h2>
-                            <p class="text-slate-400 mb-8">Tôi luôn sẵn lòng hợp tác và thảo luận về các ý tưởng mới. Đừng ngần ngại liên hệ!</p>
-
-                            <div class="space-y-4">
-                                <div class="flex items-center space-x-4">
-                                    <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary"><i class="bx bxs-envelope"></i></div>
-                                    <span>nvtoan.1706@gmail.com</span>
-                                </div>
-                                <div class="flex items-center space-x-4">
-                                    <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary"><i class="bx bxs-phone"></i></div>
-                                    <span>0932 822 075</span>
-                                </div>
+                <div class="mt-24 pt-24 border-t border-outline-variant/10">
+                    <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                        <h2 class="font-headline-xl text-headline-xl">Đội Ngũ &amp; Môi Trường</h2>
+                        <p class="font-body-md text-on-surface-variant max-w-sm">Không gian làm việc sáng tạo, nơi những ý tưởng công nghệ được hình thành và phát triển.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+                        <!-- Gallery Item 1 -->
+                        <div class="group relative overflow-hidden rounded-3xl aspect-square glass-card">
+                            <img
+                                alt="Team Collaboration"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDprhWd5m4WoSmVsVyB4GoW48l5QLacGktyG4KY3c_aDeiN7L_6jO1UuNxLRe-AmdMjdJnYdR2_w3a0Ny5diafXAWSI2P6rlKj-XMgQpHE-RCOePliUbl5lTD_IjX2rL2vBePAu0z6So012wofPVpjPIpZer5AFx_XzDVt49UG07Xoqsn-ZpESCqqwTyxQ3fyqFACpn_C3RHNBd_r6zh83_02V-r7_MpFYk76zpUC00vHxit2AObqIOIYkQVAxRktzASYph-hgxzvki"
+                            />
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-surface-dim/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6"
+                            >
+                                <p class="text-primary font-label-caps text-xs mb-1 uppercase">Teamwork</p>
+                                <p class="font-headline-md text-lg">Hợp tác sáng tạo</p>
                             </div>
                         </div>
+                        <!-- Gallery Item 2 -->
+                        <div class="group relative overflow-hidden rounded-3xl aspect-square glass-card">
+                            <img
+                                alt="Development Process"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhpG_keULN6gA-72YIEtzSh1oDJ8e9BPX3zW5z7mdFTSZSLmBX6sveg8MqH1WuOyuHcLRcxkB4_Pkqmf9GGrmRy-3McxASydiTA5ln4_pNKpNFStSWUXe6xNR53HK6uAuCPfpPXHSlRS7HExGqkWbX40TJ75B35dJgazKvWQRY7b72HKp-6SvBTfTMLFZd845opJkm1IwxsVjv193bM7zszhY9ANrKBM0DSgLS10lrW0ucJoMJ69BypcFGHI6h7ecu7YmiePwFN4Yz"
+                            />
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-surface-dim/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6"
+                            >
+                                <p class="text-secondary font-label-caps text-xs mb-1 uppercase">Development</p>
+                                <p class="font-headline-md text-lg">Quy trình chuẩn mực</p>
+                            </div>
+                        </div>
+                        <!-- Gallery Item 3 -->
+                        <div class="group relative overflow-hidden rounded-3xl aspect-square glass-card">
+                            <img
+                                alt="Clean Code"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw0gJSV-QU0UiZ-Botpiufx_RDA3oRvN0h6ylF_dlRf-WrEb4GFx_EcY4aXeP0-dXs-4-XNus3Bc2VlqX6RQpaStXHiWAEvnav1uNEqboAQK69B5F3qRpomvvL5ZB9Zv_vggDiefsMFCzSUTUAVvlzlf4GkKOtORPJzq2bZfpQqXkbOjrIPUdU4G4rg1tK7RJ-j4giIFIUd_RI6El1eDfqVLU_zOCueVrgFyWBK-rym_g03p6VLeAZuVnMKuAjpzBUx8fuV-MYgxk6"
+                            />
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-surface-dim/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6"
+                            >
+                                <p class="text-tertiary font-label-caps text-xs mb-1 uppercase">Code Quality</p>
+                                <p class="font-headline-md text-lg">Chất lượng hàng đầu</p>
+                            </div>
+                        </div>
+                        <!-- Gallery Item 4 -->
+                        <div class="group relative overflow-hidden rounded-3xl aspect-square glass-card">
+                            <img
+                                alt="Workspace"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSImGcqYqy-xqAPPwTP6IfUdsU_zmUAEWIXb6QuH0WjNaXgyrc-xtLM0nLBxuSYC8eszz2rbDCypTQWb4ZhWVV5PqMc8cX4TY7dkKL1qfuqz-3krWxR9uRGjKNuBdy4cA7_ro1P8fT8RpE1jmvypFnw51GR9Vm1gAsLMRiKF40GSaq3i9VYIivYtJZsR5tYvr_TosLjASjY8y-ktz9t7MLdErA8wkMXQhlIm_GBLK5hP2g8_dO9oQ11qFonh7Dm-gPZpTpmLdL0QvZ"
+                            />
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-surface-dim/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6"
+                            >
+                                <p class="text-primary font-label-caps text-xs mb-1 uppercase">Workspace</p>
+                                <p class="font-headline-md text-lg">Môi trường cảm hứng</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-                        <form id="contact-form" class="space-y-4">
-                            <input
-                                type="text"
-                                placeholder="Tên của bạn"
-                                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-all text-white"
-                                required
-                            />
-                            <input
-                                type="email"
-                                placeholder="Email"
-                                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-all text-white"
-                                required
-                            />
-                            <textarea
-                                placeholder="Nội dung lời nhắn..."
-                                rows="4"
-                                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-all text-white"
-                                required
-                            ></textarea>
-                            <button type="submit" class="w-full bg-primary hover:bg-secondary text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-primary/20">Gửi yêu cầu</button>
+            <!-- Contact Section -->
+            <section class="py-section-gap" id="contact">
+                <div class="grid lg:grid-cols-2 gap-24 items-start">
+                    <div>
+                        <h2 class="font-headline-xl text-display-lg mb-8">
+                            Hãy cùng tạo nên
+                            <span class="text-primary italic">điều kỳ diệu</span>
+                        </h2>
+                        <p class="text-body-lg text-on-surface-variant mb-12">Tôi luôn sẵn sàng cho những cơ hội hợp tác mới hoặc đơn giản chỉ là một cuộc trò chuyện về công nghệ.</p>
+                        <img src="./assets/image/mascot-hello.webp" alt="mascot" class="w-48 object-contain" />
+                    </div>
+                    <div class="glass-card p-10 md:p-12 rounded-[40px] relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-[60px]"></div>
+                        <form action="https://formspree.io/f/meenzjjb" method="POST" class="space-y-6 relative z-10">
+                            <input type="hidden" name="_next" value="https://nvtoancitctu.github.io/" />
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="text-label-caps text-xs ml-1 uppercase">Họ và tên</label>
+                                    <input name="name" required class="w-full bg-surface-container rounded-xl p-4" placeholder="John Doe" type="text" />
+                                </div>
+
+                                <div class="space-y-2">
+                                    <label class="text-label-caps text-xs ml-1 uppercase">Email</label>
+                                    <input name="email" required class="w-full bg-surface-container rounded-xl p-4" placeholder="email@example.com" type="email" />
+                                </div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="text-label-caps text-xs ml-1 uppercase">Lời nhắn</label>
+                                <textarea name="message" required class="w-full bg-surface-container rounded-xl p-4" rows="5" placeholder="Hãy viết lời nhắn của bạn ở đây..."></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-on-surface text-surface font-bold py-4 rounded-xl hover:bg-tertiary">Gửi tin nhắn ngay</button>
                         </form>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </main>
 
         <!-- Footer -->
-        <footer class="py-12 border-t border-white/5">
-            <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-500">
-                <div>
-                    <p>&copy; 2024 Evan Nguyen. Được xây dựng bằng đam mê & Laravel/Tailwind.</p>
+        <footer class="bg-surface-container-lowest border-t border-outline-variant/10 w-full py-12">
+            <div class="max-w-[1280px] mx-auto px-margin-page flex flex-col md:flex-row justify-between items-center gap-unit">
+                <div class="text-on-surface font-headline-md text-2xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">[toan]</div>
+                <p class="font-label-caps text-label-caps text-on-surface-variant opacity-80 hover:opacity-100">&copy; 2025 Nguyen Van Toan. All rights reserved!</p>
+                <div class="flex gap-8">
+                    <a class="text-on-surface-variant hover:text-tertiary transition-colors font-label-caps text-label-caps" href="https://github.com/nvtoancitctu" target="_blank">GitHub</a>
+                    <a class="text-on-surface-variant hover:text-tertiary transition-colors font-label-caps text-label-caps" href="https://www.linkedin.com/in/nvtoancitctu" target="_blank">
+                        LinkedIn
+                    </a>
+                    <a class="text-on-surface-variant hover:text-tertiary transition-colors font-label-caps text-label-caps" href="https://nvtoancitctu.github.io/privacy-policy" target="_blank">
+                        Privacy
+                    </a>
                 </div>
-                <div class="flex space-x-6 text-xl">
-                    <a href="https://facebook.com/nvtoancitctu" class="hover:text-primary"><i class="bx bxl-facebook"></i></a>
-                    <a href="https://x.com/hiton2025wg" class="hover:text-primary"><i class="bx bxl-twitter"></i></a>
-                    <a href="https://www.instagram.com/ngvt.1706" class="hover:text-primary"><i class="bx bxl-instagram"></i></a>
-                    <a href="https://github.com/nvtoancitctu" class="hover:text-primary"><i class="bx bxl-github"></i></a>
-                </div>
-                <a href="#home" class="w-10 h-10 bg-primary/20 flex items-center justify-center rounded-lg text-primary hover:bg-primary hover:text-white transition-all">
-                    <i class="bx bx-up-arrow-alt text-2xl"></i>
-                </a>
             </div>
         </footer>
-
-        <!-- Scripts -->
-        <script src="https://unpkg.com/scrollreveal"></script>
-        <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-
         <script>
-            // 1. Mobile Menu Toggle
-            const menuBtn = document.getElementById("menu-btn");
-            const mobileMenu = document.getElementById("mobile-menu");
-            menuBtn.onclick = () => {
-                mobileMenu.classList.toggle("hidden");
-            };
-            document.querySelectorAll(".mobile-link").forEach((link) => {
-                link.onclick = () => mobileMenu.classList.add("hidden");
-            });
-
-            // 2. Typed JS Effect
-            new Typed("#typed-text", {
-                strings: ["Laravel Developer", "Fullstack Developer", "Backend Specialist", "Tech Enthusiast"],
-                typeSpeed: 50,
-                backSpeed: 30,
-                loop: true,
-            });
-
-            // 3. Scroll Reveal Animations
-            const sr = ScrollReveal({
-                origin: "top",
-                distance: "60px",
-                duration: 2000,
-                delay: 200,
-                reset: false, // Animation runs once
-            });
-
-            sr.reveal(".reveal-top");
-            sr.reveal(".reveal-bottom", { origin: "bottom" });
-            sr.reveal(".reveal-left", { origin: "left" });
-            sr.reveal(".reveal-right", { origin: "right" });
-
-            // 4. Header Background Change on Scroll
-            window.onscroll = () => {
-                const header = document.getElementById("header");
-                if (window.scrollY > 50) {
-                    header.classList.add("bg-dark/95");
-                    header.classList.remove("bg-transparent");
-                } else {
-                    header.classList.remove("bg-dark/95");
-                    header.classList.add("bg-transparent");
+            window.addEventListener("pageshow", function (event) {
+                // Nếu trang được load từ cache (back/forward)
+                if (event.persisted || performance.getEntriesByType("navigation")[0].type === "back_forward") {
+                    window.location.reload();
                 }
-            };
-
-            // 5. Contact Form Simulation
-            document.getElementById("contact-form").onsubmit = (e) => {
-                e.preventDefault();
-                const btn = e.target.querySelector("button");
-                const originalText = btn.innerText;
-                btn.innerText = "Đang gửi...";
-                btn.disabled = true;
-
-                setTimeout(() => {
-                    btn.innerText = "Cảm ơn bạn đã liên hệ!";
-                    btn.classList.replace("bg-primary", "bg-green-500");
-                    e.target.reset();
-                }, 1500);
-            };
+            });
         </script>
     </body>
 </html>
