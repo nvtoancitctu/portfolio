@@ -1,10 +1,9 @@
 <!doctype html>
-
 <html class="dark" lang="vi">
     <head>
         <meta charset="utf-8" />
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <title>[toan] - Portfolio</title>
+        <title>Portfolioc| [toan]</title>
         <link rel="icon" href="./assets/icon.png" type="image/png" />
         <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet" />
@@ -35,7 +34,6 @@
                 display: inline-block;
                 transition: color 0.3s ease;
             }
-
             .nav-link::after {
                 content: "";
                 position: absolute;
@@ -48,11 +46,9 @@
                 transform-origin: right;
                 transition: transform 0.3s ease;
             }
-
             .nav-link:hover {
                 color: var(--color-primary); /* hoặc text-primary nếu dùng Tailwind */
             }
-
             .nav-link:hover::after {
                 transform: scaleX(1);
                 transform-origin: left;
@@ -149,7 +145,7 @@
 
     <body class="font-body-md text-on-surface selection:bg-primary selection:text-on-primary">
         <!-- TopNavBar -->
-        <nav class="fixed top-0 w-full z-50 bg-surface/60 backdrop-blur-xl border-b border-outline-variant/10">
+        <nav class="fixed top-0 w-full z-50 bg-surface/60 backdrop-blur-xl border-b border-outline-variant/10 shadow-none">
             <div class="max-w-[1280px] mx-auto flex justify-between items-center px-margin-page h-20">
                 <div class="font-headline-md text-headline-md font-bold text-on-surface tracking-tighter bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
                     [toan]
@@ -167,7 +163,7 @@
                 </div>
             </div>
         </nav>
-
+        <!-- Main -->
         <main class="max-w-[1280px] mx-auto px-margin-page">
             <!-- Hero Section -->
             <section class="pt-40 pb-20 grid lg:grid-cols-2 items-center gap-gutter min-h-screen" id="about">
@@ -603,7 +599,6 @@
                 </div>
             </section>
         </main>
-
         <!-- Footer -->
         <footer class="bg-surface-container-lowest border-t border-outline-variant/10 w-full py-12">
             <div class="max-w-[1280px] mx-auto px-margin-page flex flex-col md:flex-row justify-between items-center gap-unit">
@@ -614,13 +609,41 @@
                     <a class="text-on-surface-variant hover:text-tertiary transition-colors font-label-caps text-label-caps" href="https://www.linkedin.com/in/nvtoancitctu" target="_blank">
                         LinkedIn
                     </a>
-                    <a class="text-on-surface-variant hover:text-tertiary transition-colors font-label-caps text-label-caps" href="https://nvtoancitctu.github.io/privacy-policy" target="_blank">
-                        Privacy
-                    </a>
+                    <a class="text-on-surface-variant hover:text-tertiary transition-colors font-label-caps text-label-caps" href="./privacy.html" target="_blank">Privacy</a>
                 </div>
             </div>
         </footer>
+        <!-- Nút Back To Top -->
+        <button
+            id="backToTop"
+            class="fixed bottom-6 right-6 z-50 hidden items-center justify-center w-12 h-12 rounded-full bg-primary text-white shadow-lg hover:scale-110 transition-all duration-300"
+        >
+            <span class="material-symbols-outlined">arrow_upward</span>
+        </button>
+
         <script>
+            const backToTopBtn = document.getElementById("backToTop");
+
+            // Hiện nút khi scroll xuống
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.remove("hidden");
+                    backToTopBtn.classList.add("flex");
+                } else {
+                    backToTopBtn.classList.add("hidden");
+                    backToTopBtn.classList.remove("flex");
+                }
+            });
+
+            // Scroll lên đầu trang
+            backToTopBtn.addEventListener("click", () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                });
+            });
+
+            // Reload trang khi submit form thành công
             window.addEventListener("pageshow", function (event) {
                 // Nếu trang được load từ cache (back/forward)
                 if (event.persisted || performance.getEntriesByType("navigation")[0].type === "back_forward") {
